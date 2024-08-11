@@ -4,7 +4,9 @@ services:
   nginx:
     image: nginx:latest
     container_name: nginx
-    network_mode: "host"
+    ports:
+      - "80:80"
+      - "443:443"
     volumes:
       - ./data/nginx-ssl/conf.d:/etc/nginx/conf.d
       - ./data/nginx-ssl/error:/usr/share/nginx/html
