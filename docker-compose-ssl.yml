@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    network_mode: "host"
+    volumes:
+      - ./data/nginx-ssl/conf.d:/etc/nginx/conf.d
+      - ./data/nginx-ssl/error:/usr/share/nginx/html
+      - ./data/certbot/www:/var/lib/letsencrypt
+      - ./data/certbot/etc:/etc/letsencrypt
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ./data/certbot/www:/var/lib/letsencrypt
+      - ./data/certbot/etc:/etc/letsencrypt
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+

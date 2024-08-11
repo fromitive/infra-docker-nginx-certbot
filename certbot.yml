@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ./data/certbot/etc:/etc/letsencrypt
+      - ./data/certbot/www:/var/lib/letsencrypt
+    entrypoint: "certbot certonly --webroot --webroot-path=/var/lib/letsencrypt -d www.fromitive.site --non-interactive --agree-tos -m fromitive@gmail.com"
