@@ -6,7 +6,6 @@ services:
     container_name: nginx_for_cert
     ports:
       - "80:80"
-    network_mode: bridge
     volumes:
       - ./certbot-webroot:/var/www/html
       - ./nginx/conf.d:/etc/nginx/conf.d
