@@ -40,7 +40,7 @@ server {
 }
 ```
 
-2. run docker-conmpose.yml
+2. run `docker-conmpose.yml` in `nginx-ssl` directory
 
 ```
 docker compose up -d
