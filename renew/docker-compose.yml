@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ../certifications:/etc/letsencrypt
+    command: ["renew", "--force-renewal"]
+

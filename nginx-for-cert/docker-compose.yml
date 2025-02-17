@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  nginx_for_cert:
+    image: nginx
+    container_name: nginx_for_cert
+    ports:
+      - "80:80"
+    network_mode: bridge
+    volumes:
+      - ./certbot-webroot:/var/www/html
+      - ./nginx/conf.d:/etc/nginx/conf.d
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./certbot-webroot:/var/www/html
+      - ../certifications:/etc/letsencrypt
+
