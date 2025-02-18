@@ -1,5 +1,11 @@
 #!/bin/bash
 
+ORIGINAL_DIR="$(pwd)"
+
+ABSOLUTE_SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+cd "${ABSOLUTE_SCRIPT_DIR}" || exit 1
+
 set -e 
 
 if [ -z "$1" ]; then
@@ -18,3 +24,6 @@ docker exec $CONTAINER_NAME nginx -s reload
 
 echo "change all certification permission"
 find "$CERTIFICATIONS_PATH" -type f -exec chmod 400 {} \;
+
+
+cd "${ORIGINAL_DIR}"
